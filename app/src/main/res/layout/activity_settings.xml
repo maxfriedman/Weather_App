@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="0dp">
+
+        <TextView
+            android:id="@+id/settings_title"
+            android:text="@string/settings"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+
+        <RadioGroup
+            android:id="@+id/degreeButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/FButton"
+                android:text="@string/fah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:textColor="#FFFFFF"
+                android:onClick="onButtonTap"/>
+            <RadioButton
+                android:id="@+id/CButton"
+                android:text="@string/celsius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="#FFFFFF"
+                android:onClick="onButtonTap"/>
+        </RadioGroup>
+
+        <TextView
+            android:text="@string/numDays"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:paddingBottom="5dp"
+            />
+
+        <EditText
+            android:id="@+id/numDaysField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/enterNumDays"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:text="@string/zipCodeField"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:paddingBottom="5dp"
+            />
+
+        <EditText
+            android:id="@+id/zip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/enterZip"
+            android:inputType="number"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
