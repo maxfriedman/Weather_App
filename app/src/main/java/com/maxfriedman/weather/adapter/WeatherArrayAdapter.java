@@ -1,6 +1,7 @@
 package com.maxfriedman.weather.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,16 +64,15 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
         else{ //this is a recycled view - this is providing us an optimization
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        /*
-        SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        String degrees = prefs.getString("unit", null);
-        if (restoredText != null) {
-            String name = prefs.getString("name", "No name defined");//"No name defined" is the default value.
-            int idName = prefs.getInt("idName", 0); //0 is the default value.
-        } else
-            restoredText = "F";
-*/
-        String degrees = "F";
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        String degrees = sharedPreferences.getString("deg", null);
+        if (degrees == null) {
+            degrees = "F";
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("deg", degrees);
+            editor.commit();
+        }
 
         viewHolder.dayOfWeek.setText(weatherObject.getDayOfWeek());
         viewHolder.details.setText(weatherObject.getDetails());
