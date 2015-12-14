@@ -1,8 +1,10 @@
 package com.maxfriedman.weather;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 
+import com.maxfriedman.weather.activity.MainActivity;
 import com.maxfriedman.weather.asynctask.WeatherAsyncTask;
 import com.maxfriedman.weather.model.Weather;
 
@@ -28,31 +30,34 @@ public class PersistenceManager implements WeatherAsyncTask.QueryCompletionListe
         mContext = context;
     }
 
-    public void fetchWeatherObjects(final WeatherFetchListener listener){
+    // Called from main activity - get weather objects based on settings parameters
+    public void fetchWeatherObjects(final WeatherFetchListener listener, Boolean useCurrentLoc){
 
         mWeatherFetchListener = listener;
-        refreshData("20052");
 
-        /*
-        scoresQuery.findInBackground(new FindCallback<Score>() {
-            @Override
-            public void done(List<Score> list, ParseException e) {
-                if(e == null){
-                    listener.scoresFetched(list);
-                }
-                else{
-                    listener.errorFetchingScores();
-                }
-            }
-        });*/
+        SharedPreferences prefs = mContext.getSharedPreferences("prefs", mContext.MODE_PRIVATE);
+        String zip = prefs.getString("zip", null);
+
+        mLocation = ((MainActivity)mContext).location;
+
+        // use current loc or zip code for forecast?
+        if (useCurrentLoc == true && mLocation.getLatitude() != 0)
+            refreshData(mLocation.getLatitude(), mLocation.getLongitude());
+        else if (zip != null) {
+            refreshData(zip);
+        } else {
+            dataNotFound();
+        }
     }
 
+    // refresh data using lat long
     public void refreshData(double lat, double lon) {
 
         WeatherAsyncTask weatherData = new WeatherAsyncTask(this);
         weatherData.execute(lat, lon);
     }
 
+    // refresh data using zipcode
     public void refreshData(String zipcode) {
 
         double zip = Double.parseDouble(zipcode);
@@ -60,44 +65,17 @@ public class PersistenceManager implements WeatherAsyncTask.QueryCompletionListe
         weatherData.execute(zip);
     }
 
-    /*
-    //@Override
-    public void locationFound(Location location) {
-
-        Log.d(TAG, "location found");
-        mLocation = location;
-        refreshData(mLocation.getLatitude(), mLocation.getLongitude());
-    }
-
-    @Override
-    public void locationNotFound(LocationFinder.FailureReason failureReason) {
-
-        Log.d(TAG, "location not found");
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
-                .setMessage(R.string.cant_find_location)
-                .setPositiveButton(R.string.zipcode, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //openSettings();
-                    }
-                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //onCancel();
-                    }
-                });
-    } */
-
+    // data found/not found callbacks
     @Override
     public void dataFound(List<Weather> weatherObjects) {
 
         mWeatherFetchListener.weatherObjectsFetched(weatherObjects);
-
     }
 
     @Override
     public void dataNotFound() {
 
+        mWeatherFetchListener.errorFetchingWeatherObjects();
     }
 
 }

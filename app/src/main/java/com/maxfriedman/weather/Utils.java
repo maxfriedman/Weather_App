@@ -1,8 +1,5 @@
 package com.maxfriedman.weather;
 
-import android.content.SharedPreferences;
-import android.view.View;
-
 import com.maxfriedman.weather.model.Weather;
 
 import org.apache.http.HttpEntity;

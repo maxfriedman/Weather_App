@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="app_name">Weather App</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="today">Today</string>
+    <string name="ok">bueno</string>
+    <string name="forecast">Predicción a 7 días:</string>
+    <string name="no_data_bg_txt">No hay datos para mostrar</string>
+    <string name="location_permission_title">Permitir la ubicación ?</string>
+    <string name="location_permission_message">Por favor, permitir el acceso a su ubicación para los resultados más precisos.</string>
+    <string name="data_not_found">Ubicación no válida , por favor vuelva a intentarlo .</string>
+    <string name="invalid_zip_code">Ubicación no válida , por favor, inténtalo de nuevo.</string>
+    <string name="invalid_num_days">Ubicación no válida , por favor, inténtalo de nuevo.</string>
+    <string name="error">Womp Womp . tuvimos algunos problemas para detectar su ubicación .</string>
+    <string name="cant_find_location">Womp Womp . tuvimos algunos problemas para detectar su ubicación .</string>
+    <string name="cancel">Cancelar</string>
+    <string name="try_again">Inténtalo de nuevo</string>
+    <string name="settings">Ajustes</string>
+    <string name="settings_activity_title">Ajustes</string>
+    <string name="celsius">Celsius</string>
+    <string name="zipcode">Establecer un código postal</string>
+    <string name="title">Weather App</string>
+    <string name="refresh">Actualizacion</string>
+    <string name="fah">Fahrenheit</string>
+    <string name="numDays">Cuantos Dias?</string>
+    <string name="enterZip">Código postal por favor</string>
+    <string name="enterNumDays">Entre un numero 1-10</string>
+    <string name="zipCodeField">Establecer un código postal?</string>
+
+</resources>

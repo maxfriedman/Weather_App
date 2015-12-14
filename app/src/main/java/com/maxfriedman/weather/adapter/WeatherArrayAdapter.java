@@ -74,6 +74,7 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
             editor.commit();
         }
 
+        // set view text
         viewHolder.dayOfWeek.setText(weatherObject.getDayOfWeek());
         viewHolder.details.setText(weatherObject.getDetails());
         viewHolder.todayHighTemp.setText("Hi: " + weatherObject.getHighDegrees(degrees) + "˚" + degrees);
@@ -82,6 +83,7 @@ public class WeatherArrayAdapter extends ArrayAdapter<Weather> {
         View view = viewHolder.linLayout.findViewWithTag("123");
         if (view == null) {
 
+            // image corresponding to weather
             ImageView icon = new ImageView(getContext());
             icon.setTag("123");
             ViewGroup.LayoutParams iconParams = new ViewGroup.LayoutParams(70, 70);

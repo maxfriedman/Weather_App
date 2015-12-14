@@ -26,6 +26,7 @@ public class WeatherAsyncTask extends AsyncTask<Double, Integer, List<Weather>> 
         mCompletionListener = completionListener;
     }
 
+    // Parse JSON in bg
     @Override
     protected List<Weather> doInBackground(Double... query) {
 
